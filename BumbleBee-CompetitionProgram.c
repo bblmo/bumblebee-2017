@@ -57,12 +57,22 @@ void pre_auton()
 
 task autonomous()
 {
-	// Step 1: go forward 4 sec and stop
+		// Step 1: go forward 2.500 sec and stop
 	motor[rightMotor] = 128;		  // Motor on port2 is run at full power forward
 	motor[leftMotor]  = 128;		  // Motor on port3 is run at full power forward
-	wait1Msec(4000);			        // Robot runs previous code for 4000 milliseconds before moving on
-  motor[rightMotor] = 0; 				// Stop motor
+	//wait1Msec(2300);			        // Robot runs previous code for 4000 milliseconds before moving on
+  wait1Msec(33
+  00);
+	motor[rightMotor] = 0; 				// Stop motor
 	motor[leftMotor] = 0;					// Stop motor
+
+	//step 2:wait for 200
+	wait1Msec(2000);
+
+	// Step 2: open claw for 500
+	motor[clawMotor] = -128;
+	wait1Msec(2800);
+	motor[clawMotor] = 0;
 
 }
 
@@ -90,11 +100,11 @@ task usercontrol()
 		// Raise, lower or stop the arm
 		if(vexRT[Btn5U] == 1)       	//If button 5U is pressed...
 		{
-			motor[armMotor] = 40;    	//...raise the arm.
+			motor[armMotor] = 128;    	//...raise the arm.
 		}
 		else if(vexRT[Btn5D] == 1)  	//Else, if button 5D is pressed...
 		{
-			motor[armMotor] = -40;   	//...lower the arm.
+			motor[armMotor] = -128;   	//...lower the arm.
 		}
 		else                      		//Else (neither button is pressed)...
 		{
